@@ -1,4 +1,4 @@
-module phishproof.ahmd.se
+module github.com/vulnproof/phishproof
 
 go 1.18
 
