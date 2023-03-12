@@ -10,7 +10,7 @@ func getFormData() string {
 	urlToCheck := ""
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
-			tmpl, err := template.ParseFiles("form.html")
+			tmpl, err := template.ParseFiles("html/form.html")
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return

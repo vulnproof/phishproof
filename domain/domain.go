@@ -2,7 +2,6 @@ package domain
 
 import (
 	"net/url"
-	"strings"
 )
 
 // Domain represents a domain name
@@ -10,20 +9,17 @@ type Domain struct {
 	Name string
 }
 
-// NewDomain creates a new Domain from a string
-func NewDomain(domain string) (*Domain, error) {
-	u, err := url.Parse(domain)
-	if err == nil && u.Scheme != "" {
-		domain = u.Hostname()
-	}
-
-	domain = strings.ToLower(domain)
-
-	if strings.HasPrefix(domain, "www.") {
-		domain = domain[4:]
+// GetDomainFromURL extracts and returns the domain from a given URL string.
+// It returns an empty string if the URL is invalid or cannot be parsed.
+func GetDomainFromURL(u string) (*Domain, error) {
+	parsed, err := url.Parse(u)
+	if err != nil {
+		return &Domain{
+			Name: "",
+		}, nil
 	}
 
 	return &Domain{
-		Name: domain,
+		Name: parsed.Hostname(),
 	}, nil
 }

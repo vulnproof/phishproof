@@ -6,13 +6,13 @@ import (
 )
 
 // Check if a given string is a valid URL
-func isValidURL(str string) bool {
+func IsValidURL(str string) bool {
 	u, err := url.Parse(str)
 	return err == nil && u.Scheme != "" && u.Host != ""
 }
 
 // Extract the domain from a given URL string
-func extractDomain(u string) (string, error) {
+func ExtractDomain(u string) (string, error) {
 	parsed, err := url.Parse(u)
 	if err != nil {
 		return "", err
@@ -22,7 +22,7 @@ func extractDomain(u string) (string, error) {
 
 // Check if a given URL is redirecting to another URL
 // If it is redirecting, return the redirected URL
-func checkURLRedirect(url string) (string, bool) {
+func CheckURLRedirect(url string) (string, bool) {
 	client := &http.Client{}
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -43,7 +43,7 @@ func checkURLRedirect(url string) (string, bool) {
 }
 
 // Check if a given URL is a shortened URL
-func isShortenedURL(urlToCheck string) bool {
+func IsShortenedURL(urlToCheck string) bool {
 	shortenedHosts := []string{
 		"bit.ly",
 		"goo.gl",
@@ -73,16 +73,4 @@ func isShortenedURL(urlToCheck string) bool {
 		}
 	}
 	return false
-}
-
-// Check if a given URL is safe using Google Safe Browsing API
-func isURLSafeUsingGoogle(url string, apiKey string) (bool, error) {
-	// TODO: Implement the logic to check URL safety using the Google Safe Browsing API
-	return false, nil
-}
-
-// Check if a given URL is safe using VirusTotal API
-func isURLSafeUsingVirusTotal(url string, apiKey string) (bool, error) {
-	// TODO: Implement the logic to check URL safety using the VirusTotal API
-	return false, nil
 }

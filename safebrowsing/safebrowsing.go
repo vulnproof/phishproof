@@ -1,4 +1,4 @@
-package googlesafebrowsing
+package safebrowsing
 
 import (
 	"encoding/json"
